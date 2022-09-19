@@ -2,7 +2,8 @@
 import os
 
 # Read standard environment variable
-environment = os.getenv("ENVIRONMENT")
+environment = "dev" 
+#os.getenv("ENVIRONMENT")
 if environment not in ["dev", "qa", "prod"]:
     raise Exception(
         "This Databricks Workspace does not have necessary environment variables."
@@ -16,9 +17,13 @@ if environment == "dev":
     adls_raw_bronze_storage_account_name = "brewdatpltfrmrawbrzd"
     adls_silver_gold_storage_account_name = "brewdatpltfrmslvgldd"
     adls_brewdat_ghq_storage_account_name = "brewdatadlsgbdev"
+    adls_raw_bronze_storage_account_name_wiz = "storagepracgen2"
     key_vault_name = "brewdatpltfrmghqtechakvd"
-    spn_client_id = "1d3aebfe-929c-4cc1-a988-31c040d2b798"
-    spn_secret_name = "brewdat-spn-pltfrm-ghq-tech-template-rw-d"
+    key_vault_name_wiz = "prac-akv-test-1"
+    spn_client_id = "4df9ec8f-0e38-4f07-92f2-6bcbbe5fca5e"
+    spn_secret_name = "wiz-spn-pltfrm-ghq-tech-secret-name"
+    spn_client_id_wiz = "4df9ec8f-0e38-4f07-92f2-6bcbbe5fca5e"
+    spn_secret_name_wiz = "wiz-spn-pltfrm-ghq-tech-secret-name"
     source_system_to_sap_sid = {
         "sap_europe": "ero",
     }
@@ -58,9 +63,13 @@ elif environment == "prod":
 print(f"adls_raw_bronze_storage_account_name: {adls_raw_bronze_storage_account_name}")
 print(f"adls_silver_gold_storage_account_name: {adls_silver_gold_storage_account_name}")
 print(f"adls_brewdat_ghq_storage_account_name: {adls_brewdat_ghq_storage_account_name}")
+print(f"adls_raw_bronze_storage_account_name_maz: {adls_raw_bronze_storage_account_name_maz}")
 print(f"key_vault_name: {key_vault_name}")
 print(f"spn_client_id: {spn_client_id}")
 print(f"spn_secret_name: {spn_secret_name}")
+print(f"key_vault_name_maz: {key_vault_name_maz}")
+print(f"spn_client_id_maz: {spn_client_id_maz}")
+print(f"spn_secret_name_maz: {spn_secret_name_maz}")
 print(f"source_system_to_sap_sid: {source_system_to_sap_sid}")
 print(f"synapse_blob_storage_account_name: {synapse_blob_storage_account_name}")
 print(f"synapse_connection_string: {synapse_connection_string}")
@@ -82,3 +91,12 @@ print(f"lakehouse_silver_root: {lakehouse_silver_root}")
 
 brewdat_ghq_root = f"abfss://brewdat-ghq@{adls_brewdat_ghq_storage_account_name}.dfs.core.windows.net"
 print(f"brewdat_ghq_root: {brewdat_ghq_root}")
+
+lakehouse_raw_root_wiz = f"abfss://raw@{adls_raw_bronze_storage_account_name_wiz}.dfs.core.windows.net"
+print(f"lakehouse_raw_root_wiz: {lakehouse_raw_root_wiz}")
+
+lakehouse_bronze_root_wiz = f"abfss://bronze@{adls_raw_bronze_storage_account_name_wiz}.dfs.core.windows.net"
+print(f"lakehouse_bronze_root_wiz: {lakehouse_bronze_root_wiz}")
+
+lakehouse_silver_root_wiz = f"abfss://silver@{adls_raw_bronze_storage_account_name_wiz}.dfs.core.windows.net"
+print(f"lakehouse_silver_root_wiz: {lakehouse_silver_root_wiz}")
